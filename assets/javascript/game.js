@@ -39,7 +39,7 @@ function getLetters() {
 
     document.getElementById("currentWordHidden").innerHTML = wordLetters;
 
-    console.log(wordLetters);
+    console.log(wordLetters[0]);
 
 }
 
@@ -49,24 +49,27 @@ getLetters();
 
 
 
-
 // only alphabetic keys register
 
 
-// document.addEventListener("keyup", checkKeyPress);
+document.addEventListener("keyup", checkKeyPress);
 
-// function checkKeyPress(key) {
+function checkKeyPress(key) {
 
-//     var keyPress = event.key.toLowerCase();
+    var keyPress = event.key.toLowerCase();
 
-//     if (key.keyCode >= "65" && key.keyCode <= "90") {
-//         console.log("Player Guess: " + keyPress);
+    if (key.keyCode >= "65" && key.keyCode <= "90") {
+        console.log("Player Guess: " + keyPress);
 
-//         for (var i = 0; i < compWord.length; i++) {
-//             if (keyPress === wordLetters[i]) {
-//                 console.log("the same");
-//             }
-//         }
+        for (var i = 0; i < compWord.length; i++) {
 
-//     }
-// }
+            if (keyPress === compWord.charAt(i)) {
+                document.getElementById("letter" + i).innerHTML = compWord.charAt(i);
+                console.log("the same");
+            } else {
+                console.log("nope")
+            }
+        }
+
+    }
+}
