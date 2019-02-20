@@ -2,7 +2,8 @@
 
 var wins = 0;
 var losses = 0;
-var guessesLeft = 10;
+var guessesLeft = 4;
+var correctLetterCount = 0;
 
 document.getElementById("winCount").innerHTML = wins;
 document.getElementById("lossCount").innerHTML = losses;
@@ -22,32 +23,27 @@ var compWord = wordList[Math.floor(Math.random() * wordList.length)];
 
 console.log(compWord);
 
-function getLetters() {
-
-    var wordLetters = [];
-
+function resetWord() {
+    compWord = wordList[Math.floor(Math.random() * wordList.length)];
+    console.log(compWord);
+    guessesLeft = 8;
+    correctLetterCount = 0;
+    allGuesses = [];
+    document.getElementById("winCount").innerHTML = wins;
+    document.getElementById("lossCount").innerHTML = losses;
+    document.getElementById("guessCount").innerHTML = guessesLeft;
+    document.getElementById("guessList").innerHTML = "";
     document.getElementById("currentWord").innerHTML = "";
 
     for (var i = 0; i < compWord.length; i++) {
 
-        var arrayLetter = compWord.charAt(i);
-
-        wordLetters.push(arrayLetter);
-
-
-
         document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> _ </span>";
 
-        document.getElementById("currentWordHidden").innerHTML = document.getElementById("currentWordHidden").innerHTML + wordLetters[i];
     }
-
-    document.getElementById("currentWordHidden").innerHTML = wordLetters;
-
-    console.log(wordLetters[0]);
 
 }
 
-getLetters();
+resetWord();
 
 
 
@@ -85,32 +81,38 @@ function checkKeyPress(key) {
                     document.getElementById("letter" + i).innerHTML = compWord.charAt(i);
                     correctLetter = true;
                     console.log(correctLetter);
+                    correctLetterCount++;
+                    console.log("correct count: " + correctLetterCount);
+
+                    if (correctLetterCount === compWord.length) {
+
+                        wins++;
+                        document.getElementById("previousLetter").innerHTML = "Correct! It was <span class='text-success font-weight-bold text-uppercase'>" + compWord + "</span>.";
+                        console.log("Woohoo!!");
+                        resetWord();
+
+                    }
                 } else {
-                    console.log("nope")
+                    console.log("not yet...");
                 }
             }
 
             if (correctLetter === false) {
 
                 if (guessesLeft > 1) {
+
                     guessesLeft--;
                     console.log(guessesLeft);
                     document.getElementById("guessCount").innerHTML = guessesLeft;
                     document.getElementById("guessList").innerHTML = document.getElementById("guessList").innerHTML + keyPress + " ";
+
                 } else {
-                    console.log("you lose")
-                    guessesLeft = 10;
+
                     losses++;
-                    allGuesses = [];
-                    document.getElementById("lossCount").innerHTML = losses;
-                    document.getElementById("guessCount").innerHTML = guessesLeft;
-                    document.getElementById("guessList").innerHTML = "";
-
                     document.getElementById("previousLetter").innerHTML = "Wrong! It was <span class='text-danger font-weight-bold text-uppercase'>" + compWord + "</span>.";
+                    console.log("you lose");
+                    resetWord();
 
-                    compWord = wordList[Math.floor(Math.random() * wordList.length)];
-                    getLetters();
-                    console.log(compWord);
                 }
             }
         } else {
