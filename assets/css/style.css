@@ -1,14 +1,45 @@
 @import url('https://fonts.googleapis.com/css?family=Niconne');
 
 
-body {
-    background-image: url("../images/background-hogwarts.jpg");
+
+body,
+html {
+
     font-family: 'Niconne',
         cursive;
-    font-size: 200%;
+    height: 100%;
+
+}
+
+
+.bg {
+    /* The image used */
+    background-image: url("../images/background-hogwarts.jpg");
+    /* Full height */
+    min-height: 100%;
+
+
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+
 }
 
 #mainContent {
 
-    background-image: url("../images/extra_clean_paper.png")
+    background-image: url("../images/Old-Paper-Texture-1.png");
+    width: 100%;
+    height: 100%;
+
+    font-size: 150%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
