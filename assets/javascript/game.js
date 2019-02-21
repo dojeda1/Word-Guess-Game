@@ -9,7 +9,8 @@ document.getElementById("winCount").innerHTML = wins;
 document.getElementById("lossCount").innerHTML = losses;
 document.getElementById("guessCount").innerHTML = guessesLeft;
 
-var wordList = ["fish", "cat", "zebra", "gorilla"];
+// var wordList = ["quaffle", "bludger", "snitch", "butterbeer", "hogwarts", "horcrux", "quidditch", "muggle", "dumbledore", "gryffindor", "hufflepuff", "ravenclaw", "slytherin", "voldemort", "patronus"];
+var wordList = ["harry potter", "hermione granger", "ron weasley"];
 
 var allGuesses = [];
 
@@ -37,7 +38,17 @@ function resetWord() {
 
     for (var i = 0; i < compWord.length; i++) {
 
-        document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> _ </span>";
+        var currentLetter = compWord.charAt(i);
+        console.log(currentLetter);
+        var letterKeyCode = compWord.charCodeAt(i);
+        console.log(letterKeyCode);
+
+        if (letterKeyCode != "32") {
+            document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> _ </span>";
+        } else {
+            document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> &nbsp; </span>";
+            correctLetterCount++;
+        }
 
     }
 
@@ -87,7 +98,7 @@ function checkKeyPress(key) {
                     if (correctLetterCount === compWord.length) {
 
                         wins++;
-                        document.getElementById("previousLetter").innerHTML = "Correct! It was <span class='text-success font-weight-bold text-uppercase'>" + compWord + "</span>.";
+                        document.getElementById("previousLetter").innerHTML = "Correct! It was <span class='text-success font-weight-bold text-capitalize'>" + compWord + "</span>.";
                         console.log("Woohoo!!");
                         resetWord();
 
@@ -109,7 +120,7 @@ function checkKeyPress(key) {
                 } else {
 
                     losses++;
-                    document.getElementById("previousLetter").innerHTML = "Wrong! It was <span class='text-danger font-weight-bold text-uppercase'>" + compWord + "</span>.";
+                    document.getElementById("previousLetter").innerHTML = "Wrong! It was <span class='text-danger font-weight-bold text-capitalize'>" + compWord + "</span>.";
                     console.log("you lose");
                     resetWord();
 

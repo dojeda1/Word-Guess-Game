@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Niconne');
+
+
 body {
-    background-image: url("../images/swirl_pattern.png")
+    background-image: url("../images/background-hogwarts.jpg");
+    font-family: 'Niconne',
+        cursive;
+    font-size: 200%;
+}
+
+#mainContent {
+
+    background-image: url("../images/extra_clean_paper.png")
 }
