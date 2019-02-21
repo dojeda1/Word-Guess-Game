@@ -9,8 +9,8 @@ document.getElementById("winCount").innerHTML = wins;
 document.getElementById("lossCount").innerHTML = losses;
 document.getElementById("guessCount").innerHTML = guessesLeft;
 
-// var wordList = ["quaffle", "bludger", "snitch", "butterbeer", "hogwarts", "horcrux", "quidditch", "muggle", "dumbledore", "gryffindor", "hufflepuff", "ravenclaw", "slytherin", "voldemort", "patronus"];
-var wordList = ["harry potter", "hermione granger", "ron weasley"];
+// var wordList = ["harry potter", "hermione granger", "ron weasley", "jk rowling", "hagrid", "luna lovegood", "neville longbottom", "draco malfoy", "serverus snape", "quaffle", "bludger", "golden snitch", "butterbeer", "hogwarts", "horcrux", "quidditch", "muggle", "dumbledore", "gryffindor", "hufflepuff", "ravenclaw", "slytherin", "voldemort", "patronus", "he who must not be named", "tom riddle", "wand", "magic", "spell", "broomstick", "polyjuice potion", "felix felicis", "sorting hat", "expecto patronum", "windgardium leviosa", "expelliarmus", "avada kedavra", "lumos maxima", "dobby", "owl", "hedwig", "riddikulus", "diagon alley", "mischief managed", "ministry of magic", "azkaban", "honeydukes", "knockturn alley", "hogsmeade", "gringotts bank", "shrieking shack", "the leaky cauldron", "forbidden forest", "wizard", "witch", "goblin", "house elf", "animagus", "werewolf", "dragon", "unicorn", "troll", "restricted section", "invisibility cloak", "order of the phoenix", "spider", "basilisk", "dementor", "liquid death", "deathly hallows", "sorcerors stone", "halfblood price", "chamber of secrets", "goblet of fire", "centaur", "giant", "ghost", "book", "dungeon", "gillyweed", "wormwood", "devils snare", "mermaid", "crystal ball", "the boy who lived", "merlins beard"];
+var wordList = ["harry potter", "devil's snare", "wand"]
 
 var allGuesses = [];
 
@@ -43,11 +43,18 @@ function resetWord() {
         var letterKeyCode = compWord.charCodeAt(i);
         console.log(letterKeyCode);
 
-        if (letterKeyCode != "32") {
+        if (letterKeyCode != "32" && letterKeyCode != "39") {
             document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> _ </span>";
         } else {
-            document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> &nbsp; </span>";
-            correctLetterCount++;
+            if (letterKeyCode == "32") {
+                document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> &nbsp; </span>";
+                correctLetterCount++;
+            } else {
+                document.getElementById("currentWord").innerHTML = document.getElementById("currentWord").innerHTML + "<span id='letter" + i + "'> &#39; </span>";
+                correctLetterCount++;
+                console.log("WOOOOOOOOOOO");
+            }
+
         }
 
     }
