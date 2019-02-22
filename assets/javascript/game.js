@@ -1,3 +1,5 @@
+$(".magicFade").fadeIn(3000);
+
 // set beginning variables
 
 var wins = 0;
@@ -31,10 +33,12 @@ function resetWord() {
     correctLetterCount = 0;
     allGuesses = [];
     $("#winCount").html(wins);
+
     $("#lossCount").html(losses);
     $("#guessCount").html(guessesLeft);
     $("#guessList").html("&nbsp;");
     $("#currentWord").html("");
+
 
 
     for (var i = 0; i < compWord.length; i++) {
@@ -45,13 +49,16 @@ function resetWord() {
         console.log(letterKeyCode);
 
         if (letterKeyCode != "32" && letterKeyCode != "39") {
-            $("#currentWord").append("<span id='letter" + i + "'>_</span>");
+            $("#currentWord").append("<span class='magicFade' id='letter" + i + "'>_</span>");
+            $(".magicFade").fadeIn(2000);
         } else {
             if (letterKeyCode == "32") {
-                $("#currentWord").append("<span id='letter" + i + "'> &nbsp; </span>");
+                $("#currentWord").append("<span class='magicFade' id='letter" + i + "'> &nbsp; </span>");
+                $(".magicFade").fadeIn(2000);
                 correctLetterCount++;
             } else {
-                $("#currentWord").append("<span id='letter" + i + "'> &#39; </span>");
+                $("#currentWord").append("<span class='magicFade' id='letter" + i + "'> &#39; </span>");
+                $(".magicFade").fadeIn(2000);
                 correctLetterCount++;
             }
 
@@ -94,9 +101,14 @@ function checkKeyPress(key) {
 
                 if (keyPress === compWord.charAt(i)) {
 
+                    var thisKey = compWord.charAt(i);
 
 
-                    $("#letter" + i).html(compWord.charAt(i));
+                    $("#letter" + i).fadeOut(1000, function () {
+                        $(this).text(thisKey)
+                    }).fadeIn(1000);
+                    console.log("test " + compWord.charAt(i))
+
                     correctLetter = true;
                     console.log(correctLetter);
                     correctLetterCount++;
@@ -126,6 +138,7 @@ function checkKeyPress(key) {
 
                     guessesLeft--;
                     console.log(guessesLeft);
+
                     $("#guessCount").html(guessesLeft);
                     $("#guessList").append(keyPress + " ");
 

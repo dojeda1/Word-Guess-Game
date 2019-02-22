@@ -59,3 +59,7 @@ html {
 #titleLogo {
     width: 100%;
 }
+
+.magicFade {
+    display: none;
+}
