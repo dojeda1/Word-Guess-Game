@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 </head>
 
 <body>
@@ -25,8 +26,8 @@
                     <h4 id="gameWord"></h4>
                 </div>
                 <div class="col-sm-6">
-                    <p>Wins: <span class="text-success" id="winCount"></span></p>
-                    <p>Losses: <span class="text-danger" id="lossCount"></span></p>
+                    <p>Wins: <span class="text-success font-weight-bold" id="winCount"></span></p>
+                    <p>Losses: <span class="text-danger font-weight-bold" id="lossCount"></span></p>
 
                 </div>
                 <p class="text-center">Current Word</p>
@@ -38,7 +39,7 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <p>Guesses Left: <span id="guessCount"></span></p>
+                    <p>Guesses Left: <span class="font-weight-bold" id="guessCount"></span></p>
                     <div class="row">
                         <div class="col-lg-4">
                             <p>Letters already guessed:</p>
