@@ -24,21 +24,31 @@
                 <div class="col-sm-8 mx-auto"><img class="p-3" id="titleLogo" src="./assets/images/wizard-words.png">
                     <h4 id="gameWord"></h4>
                 </div>
+                <div class="col-sm-6">
+                    <p>Wins: <span class="text-success" id="winCount"></span></p>
+                    <p>Losses: <span class="text-danger" id="lossCount"></span></p>
 
-                <p>Wins: <span class="text-success" id="winCount"></span></p>
-                <p>Losses: <span class="text-danger" id="lossCount"></span></p>
+                </div>
                 <p class="text-center">Current Word</p>
+                <div class="col-lg-6 mx-auto">
 
-                <div class="col-lg-8 mx-auto">
                     <img class="titleFlag" src="./assets/images/title-flag.png">
-
                     <p id="currentWord" class="text-center centered my-0 col-sm-12 mx-auto"></p>
 
                 </div>
-                <p>Guesses Left: <span id="guessCount"></span></p>
-                <p>Letters already guessed: <span class="text-primary" id="guessList"></span></p>
-                <p class="text-center" id="previousLetter"></p>
 
+                <div class="col-sm-12">
+                    <p>Guesses Left: <span id="guessCount"></span></p>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <p>Letters already guessed:</p>
+                        </div>
+                        <div class="col-lg-8">
+                            <p><span class="text-primary" id="guessList"></span></p>
+                        </div>
+                    </div>
+                    <p class="text-center" id="previousLetter"></p>
+                </div>
             </div>
 
         </div>
