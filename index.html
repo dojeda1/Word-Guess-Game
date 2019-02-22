@@ -17,19 +17,24 @@
 
     <div class="bg">
 
-        <div class="container p-5">
+        <div class="container p-1">
 
             <div id="mainContent" class="p-5">
 
-                <p class="p-3 rounded text-center">What is the magic word?</p>
+                <div class="col-sm-8 mx-auto"><img class="p-3" id="titleLogo" src="./assets/images/wizard-words.png">
+                    <h4 id="gameWord"></h4>
+                </div>
 
-                <h4 id="gameWord"></h4>
-
-                <p>Press any letter to start!</p>
                 <p>Wins: <span class="text-success" id="winCount"></span></p>
                 <p>Losses: <span class="text-danger" id="lossCount"></span></p>
                 <p class="text-center">Current Word</p>
-                <p class="text-center" id="currentWord"></p>
+
+                <div class="col-lg-8 mx-auto">
+                    <img class="titleFlag" src="./assets/images/title-flag.png">
+
+                    <p id="currentWord" class="text-center centered my-0 col-sm-12 mx-auto"></p>
+
+                </div>
                 <p>Guesses Left: <span id="guessCount"></span></p>
                 <p>Letters already guessed: <span class="text-primary" id="guessList"></span></p>
                 <p class="text-center" id="previousLetter"></p>
