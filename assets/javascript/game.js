@@ -36,8 +36,12 @@ function resetWord() {
 
     $("#lossCount").html(losses);
     $("#guessCount").html(guessesLeft);
-    $("#guessList").html("&nbsp;");
+    $("#guessList").html("&nbsp;")
     $("#currentWord").html("");
+
+    $("#currentWord").fadeIn(2000);
+    $("#guessList").fadeIn(0);
+
 
 
 
@@ -49,16 +53,13 @@ function resetWord() {
         console.log(letterKeyCode);
 
         if (letterKeyCode != "32" && letterKeyCode != "39") {
-            $("#currentWord").append("<span class='magicFade' id='letter" + i + "'>_</span>");
-            $(".magicFade").fadeIn(2000);
+            $("#currentWord").append("<span id='letter" + i + "'>_</span>");
         } else {
             if (letterKeyCode == "32") {
-                $("#currentWord").append("<span class='magicFade' id='letter" + i + "'> &nbsp; </span>");
-                $(".magicFade").fadeIn(2000);
+                $("#currentWord").append("<span id='letter" + i + "'> &nbsp; </span>");
                 correctLetterCount++;
             } else {
-                $("#currentWord").append("<span class='magicFade' id='letter" + i + "'> &#39; </span>");
-                $(".magicFade").fadeIn(2000);
+                $("#currentWord").append("<span id='letter" + i + "'> &#39; </span>");
                 correctLetterCount++;
             }
 
@@ -104,15 +105,29 @@ function checkKeyPress(key) {
                     var thisKey = compWord.charAt(i);
 
 
-                    $("#letter" + i).fadeOut(1000, function () {
+                    $("#letter" + i).fadeOut(500, function () {
                         $(this).text(thisKey)
                     }).fadeIn(1000);
-                    console.log("test " + compWord.charAt(i))
+                    console.log("thisKey: " + thisKey)
 
                     correctLetter = true;
                     console.log(correctLetter);
                     correctLetterCount++;
                     console.log("correct count: " + correctLetterCount);
+
+                    if (correctLetterCount === compWord.length) {
+
+                        wins++;
+                        $("#previousLetter").html("Correct! It was <span class='text-success font-weight-bold text-capitalize'>" + compWord + "</span>.");
+                        console.log("Woohoo!!");
+
+                        $("#currentWord").delay(2500).fadeOut(1000, function () {
+                            resetWord();
+                        });
+
+                        $("#guessList").delay(2500).fadeOut(1000)
+
+                    }
 
 
                 } else {
@@ -122,15 +137,7 @@ function checkKeyPress(key) {
 
             }
 
-            if (correctLetterCount === compWord.length) {
 
-                wins++;
-                $("#previousLetter").html("Correct! It was <span class='text-success font-weight-bold text-capitalize'>" + compWord + "</span>.");
-                console.log("Woohoo!!");
-                resetWord();
-
-
-            }
 
             if (correctLetter === false) {
 
@@ -140,14 +147,19 @@ function checkKeyPress(key) {
                     console.log(guessesLeft);
 
                     $("#guessCount").html(guessesLeft);
-                    $("#guessList").append(keyPress + " ");
+                    $("#guessList").append("<span class='magicFade'>" + keyPress + " </span")
+                    $(".magicFade").fadeIn(1000);
+
 
                 } else {
 
                     losses++;
                     $("#previousLetter").html("Wrong! It was <span class='text-danger font-weight-bold text-capitalize'>" + compWord + "</span>.");
                     console.log("you lose");
-                    resetWord();
+                    $("#currentWord").delay(500).fadeOut(1000, function () {
+                        resetWord();
+                    });
+                    $("#guessList").delay(500).fadeOut(1000)
 
                 }
             }
