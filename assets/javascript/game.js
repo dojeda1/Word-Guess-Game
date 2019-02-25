@@ -1,5 +1,9 @@
 $(".magicFade").fadeIn(3000);
 
+var bgMusic = $("#backgroundMusic");
+
+
+
 // set beginning variables
 
 var wins = 0;
@@ -7,7 +11,7 @@ var losses = 0;
 var guessesLeft = 4;
 var correctLetterCount = 0;
 
-var wordList = ["harry potter", "hermione granger", "ron weasley", "jk rowling", "hagrid", "luna lovegood", "neville longbottom", "draco malfoy", "serverus snape", "quaffle", "bludger", "golden snitch", "butterbeer", "hogwarts", "horcrux", "quidditch", "muggle", "dumbledore", "gryffindor", "hufflepuff", "ravenclaw", "slytherin", "voldemort", "patronus", "tom marvolo riddle", "wand", "magic", "spell", "broomstick", "polyjuice potion", "felix felicis", "sorting hat", "expecto patronum", "windgardium leviosa", "expelliarmus", "avada kedavra", "lumos maxima", "dobby", "owl", "hedwig", "riddikulus", "diagon alley", "mischief managed", "ministry of magic", "azkaban", "honeydukes", "knockturn alley", "hogsmeade", "gringotts bank", "shrieking shack", "the leaky cauldron", "forbidden forest", "wizard", "witch", "goblin", "house elf", "animagus", "werewolf", "dragon", "unicorn", "troll", "restricted section", "invisibility cloak", "order of the phoenix", "spider", "basilisk", "dementor", "liquid death", "deathly hallows", "sorceror's stone", "halfblood prince", "chamber of secrets", "goblet of fire", "centaur", "giant", "ghost", "book", "dungeon", "gillyweed", "wormwood", "devil's snare", "mermaid", "crystal ball", "the boy who lived", "merlin's beard", "whomping willow", "remus lupin", "scabbers", "hippogriff", "mudblood", "elder wand", "resurrection stone", "imperio", "crucio", "death eater", "auror", "dumbledore's army", "howler", "deluminator", "enchantment", "marauder's map", "wizard's chess", "nagini", "sword", "philosopher's stone", "knight bus", "portkey", "vanishing cabinet", "boggart", "sphinx", "dragon heartstring", "fluffy", "parseltongue", "pumpkin juice", "mad eye moody"];
+var wordList = ["harry potter", "hermione granger", "ron weasley", "jk rowling", "hagrid", "luna lovegood", "neville longbottom", "draco malfoy", "serverus snape", "quaffle", "bludger", "golden snitch", "butterbeer", "hogwarts", "horcrux", "quidditch", "muggle", "dumbledore", "gryffindor", "hufflepuff", "ravenclaw", "slytherin", "voldemort", "patronus", "tom marvolo riddle", "wand", "magic", "spell", "broomstick", "polyjuice potion", "felix felicis", "sorting hat", "expecto patronum", "windgardium leviosa", "expelliarmus", "avada kedavra", "lumos maxima", "dobby", "owl", "hedwig", "riddikulus", "diagon alley", "mischief managed", "ministry of magic", "azkaban", "honeydukes", "knockturn alley", "hogsmeade", "gringotts bank", "shrieking shack", "the leaky cauldron", "forbidden forest", "wizard", "witch", "goblin", "house elf", "animagus", "werewolf", "dragon", "unicorn", "troll", "restricted section", "invisibility cloak", "order of the phoenix", "spider", "basilisk", "dementor", "living death", "deathly hallows", "sorceror's stone", "halfblood prince", "chamber of secrets", "goblet of fire", "centaur", "giant", "ghost", "book", "dungeon", "gillyweed", "wormwood", "devil's snare", "mermaid", "crystal ball", "the boy who lived", "merlin's beard", "whomping willow", "remus lupin", "scabbers", "hippogriff", "mudblood", "elder wand", "resurrection stone", "imperio", "crucio", "death eater", "auror", "dumbledore's army", "howler", "deluminator", "enchantment", "marauder's map", "wizard's chess", "nagini", "sword", "philosopher's stone", "knight bus", "portkey", "vanishing cabinet", "boggart", "sphinx", "dragon heartstring", "fluffy", "parseltongue", "pumpkin juice", "mad eye moody"];
 
 // test array
 // var wordList = ["harry potter", "devil's snare", "wand"]
@@ -147,14 +151,21 @@ function checkKeyPress(key) {
                     console.log(guessesLeft);
 
                     $("#guessCount").html(guessesLeft);
-                    $("#guessList").append("<span class='magicFade'>" + keyPress + " </span")
-                    $(".magicFade").fadeIn(1000);
+                    $("#guessList").append("<span class='magicFade wrongLetter'>" + keyPress + " </span")
+                    $(".wrongLetter").fadeIn(500);
 
 
                 } else {
 
                     losses++;
-                    $("#previousLetter").html("Wrong! It was <span class='text-danger font-weight-bold text-capitalize'>" + compWord + "</span>.");
+
+                    $("#guessList").append("<span class='magicFade'>" + keyPress + " </span")
+                    $(".magicFade").fadeIn(500);
+
+                    $("#previousLetter").html("<span class='magicFad' id='wrong'>Wrong! It was <span class='text-danger font-weight-bold text-capitalize'>" + compWord + "</span>.</span");
+                    // $("#wrong").fadeIn(1000).delay(3000).fadeOut(1000);
+                    // $("#previousLetter").html("&nbsp;")
+
                     console.log("you lose");
                     $("#currentWord").delay(500).fadeOut(1000, function () {
                         resetWord();
