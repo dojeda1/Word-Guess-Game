@@ -1,6 +1,11 @@
 $(".magicFade").fadeIn(3000);
 
 var bgMusic = $("#backgroundMusic");
+var successSound = $("#successSound");
+
+
+
+
 
 
 

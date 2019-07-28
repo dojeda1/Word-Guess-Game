@@ -6,6 +6,8 @@ This version of the traditional Hangman game is fashioned after the wizarding wo
 
   **Visit Web App [Here!](https://dojeda1.github.io/Word-Guess-Game/)**
 
+![Web App Image](./demo.png)
+
 ### Technologies used
 
 * HTML
