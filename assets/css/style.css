@@ -8,29 +8,23 @@ html {
     font-family: 'Niconne',
         cursive;
     height: 100%;
-
-}
-
-
-.bg {
     /* The image used */
     background-image: url("../images/background-hogwarts.jpg");
     /* Full height */
     min-height: 100%;
-
-
-
+    
+    
+    
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 
-
 }
 
 #mainContent {
-
+    padding: 50px 15px 80px;
     background-image: url("../images/Old-Paper-Texture-1.png");
     width: 100%;
     height: 100%;
@@ -49,17 +43,69 @@ html {
 }
 
 #currentWord {
-
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    letter-spacing: 2px;
 }
 
 #titleLogo {
     width: 100%;
 }
 
-.magicFade {
+.hide {
     display: none;
+    /* opacity: 0; */
+}
+
+#guessList {
+    /* color: white;
+    text-shadow: 0 0 10px blue; */
+}
+
+#previousLetter {
+    transition: opacity 1s ease;
+}
+
+.fadeOut {
+    opacity: 0;
+}
+
+.correct {
+    color: white;
+    text-shadow: 0 0 10px green;
+}
+.wrong {
+    color: white;
+    text-shadow: 0 0 10px red;
+}
+
+.letter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.letter-btn {
+    background-color: transparent;
+    border: none;
+    line-height: 1;
+    padding: 10px;
+    transition: color 0.3s ease,opacity 0.3s ease;
+}
+
+.letter-btn:focus {
+    outline: none;
+}
+
+.letter-btn[data-available="true"] {
+    color: white;
+    cursor: pointer;
+    text-shadow: 0 0 10px yellow;
+}
+
+.letter-btn[data-available="false"] {
+    color: black;
+    pointer-events: none;
+    opacity: 0;
 }

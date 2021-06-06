@@ -1,4 +1,4 @@
-$(".magicFade").fadeIn(3000);
+$(".hide").fadeIn(3000);
 
 var bgMusic = $("#backgroundMusic");
 var successSound = $("#successSound");
@@ -68,7 +68,7 @@ function resetWord() {
                 $("#currentWord").append("<span id='letter" + i + "'> &nbsp; </span>");
                 correctLetterCount++;
             } else {
-                $("#currentWord").append("<span id='letter" + i + "'> &#39; </span>");
+                $("#currentWord").append("<span id='letter" + i + "'>&#39;</span>");
                 correctLetterCount++;
             }
 
@@ -76,6 +76,7 @@ function resetWord() {
 
     }
 
+    $(`.letter-btn`).attr('data-available','true')
 }
 
 resetWord();
@@ -88,101 +89,79 @@ resetWord();
 
 
 document.addEventListener("keyup", checkKeyPress);
+$('.letter-btn').on('click', function() {
+    checkLetter($(this).attr('data-letter'));
+})
 
 function checkKeyPress(key) {
-
     var keyPress = event.key.toLowerCase();
-
-
-
     if (key.keyCode >= "65" && key.keyCode <= "90") {
         console.log("Player Guess: " + keyPress);
-
-        if (allGuesses.indexOf(keyPress) === -1) {
-
-            allGuesses.push(keyPress);
-            console.log(allGuesses);
-
-            var correctLetter = false;
-
-
-
-            for (var i = 0; i < compWord.length; i++) {
-
-                if (keyPress === compWord.charAt(i)) {
-
-                    var thisKey = compWord.charAt(i);
-
-
-                    $("#letter" + i).fadeOut(500, function () {
-                        $(this).text(thisKey)
-                    }).fadeIn(1000);
-                    console.log("thisKey: " + thisKey)
-
-                    correctLetter = true;
-                    console.log(correctLetter);
-                    correctLetterCount++;
-                    console.log("correct count: " + correctLetterCount);
-
-                    if (correctLetterCount === compWord.length) {
-
-                        wins++;
-                        $("#previousLetter").html("Correct! It was <span class='text-success font-weight-bold text-capitalize'>" + compWord + "</span>.");
-                        console.log("Woohoo!!");
-
-                        $("#currentWord").delay(2500).fadeOut(1000, function () {
-                            resetWord();
-                        });
-
-                        $("#guessList").delay(2500).fadeOut(1000)
-
-                    }
-
-
-                } else {
-                    console.log("not yet...");
-                }
-
-
-            }
-
-
-
-            if (correctLetter === false) {
-
-                if (guessesLeft > 1) {
-
-                    guessesLeft--;
-                    console.log(guessesLeft);
-
-                    $("#guessCount").html(guessesLeft);
-                    $("#guessList").append("<span class='magicFade wrongLetter'>" + keyPress + " </span")
-                    $(".wrongLetter").fadeIn(500);
-
-
-                } else {
-
-                    losses++;
-
-                    $("#guessList").append("<span class='magicFade'>" + keyPress + " </span")
-                    $(".magicFade").fadeIn(500);
-
-                    $("#previousLetter").html("<span class='magicFad' id='wrong'>Wrong! It was <span class='text-danger font-weight-bold text-capitalize'>" + compWord + "</span>.</span");
-                    // $("#wrong").fadeIn(1000).delay(3000).fadeOut(1000);
-                    // $("#previousLetter").html("&nbsp;")
-
-                    console.log("you lose");
-                    $("#currentWord").delay(500).fadeOut(1000, function () {
-                        resetWord();
-                    });
-                    $("#guessList").delay(500).fadeOut(1000)
-
-                }
-            }
-        } else {
-            console.log("duplicate letter");
-        }
+        checkLetter(keyPress)
     } else {
         console.log("invalid key");
+    }
+}
+
+function checkLetter(keyPress) {
+    $(`.letter-btn[data-letter="${keyPress.toUpperCase()}"]`).attr('data-available','false')
+    keyPress = keyPress.toLowerCase();
+    if (allGuesses.indexOf(keyPress) === -1) {
+        allGuesses.push(keyPress);
+        console.log(allGuesses);
+        var correctLetter = false;
+        for (var i = 0; i < compWord.length; i++) {
+            if (keyPress === compWord.charAt(i)) {
+                var thisKey = compWord.charAt(i);
+                $("#letter" + i).fadeOut(500, function () {
+                    $(this).text(thisKey)
+                }).fadeIn(1000);
+                console.log("thisKey: " + thisKey)
+                correctLetter = true;
+                console.log(correctLetter);
+                correctLetterCount++;
+                console.log("correct count: " + correctLetterCount);
+                if (correctLetterCount === compWord.length) {
+                    wins++;
+                    $("#previousLetter").html("Correct! It was <span class='correct text-capitalize'>" + compWord + "</span>.");
+                    console.log("Woohoo!!");
+                    $("#previousLetter").removeClass('fadeOut');
+                    setTimeout (function() {
+                        $("#previousLetter").addClass('fadeOut');
+                    },3000);
+                    $("#currentWord").delay(2500).fadeOut(1000, function () {
+                        resetWord();
+                    });
+                    $("#guessList").delay(2500).fadeOut(1000);
+
+                }
+            } else {
+                console.log("not yet...");
+            }
+        }
+        if (correctLetter === false) {
+            if (guessesLeft > 1) {
+                guessesLeft--;
+                console.log(guessesLeft);
+                $("#guessCount").html(guessesLeft);
+                $("#guessList").append("<span class='hide wrongLetter'>" + keyPress + " </span>")
+                $(".wrongLetter").fadeIn(500);
+            } else {
+                losses++;
+                $("#guessList").append("<span class='hide'>" + keyPress + " </span>")
+                $(".hide").fadeIn(500);
+                $("#previousLetter").html("Wrong! It was <span class='text-capitalize wrong'>" + compWord + "</span>.");
+                $("#previousLetter").removeClass('fadeOut');
+                setTimeout (function() {
+                    $("#previousLetter").addClass('fadeOut');
+                },3000);
+                $("#currentWord").delay(500).fadeOut(1000, function () {
+                    resetWord();
+                });
+                $("#guessList").delay(500).fadeOut(1000)
+            }
+        }
+    } else {
+        console.log("duplicate letter");
     }
 }

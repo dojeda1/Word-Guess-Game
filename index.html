@@ -17,49 +17,72 @@
 
 <body>
 
-    <div class="bg">
+    <div class="container p-1">
 
-        <div class="container p-1">
+        <div id="mainContent">
+            <div class="hide">
+                <div class="col-sm-8 mx-auto"><img class="p-3" id="titleLogo" src="./assets/images/wizard-words.png">
+                    <h4 id="gameWord"></h4>
+                </div>
+                <div class="col-sm-6">
+                    <p>Wins: <span class="correct" id="winCount"></span></p>
+                    <p>Losses: <span class="wrong" id="lossCount"></span></p>
+                </div>
+                <p class="text-center">Current Word</p>
+                <div class="col-lg-6 mx-auto">
 
-            <div id="mainContent" class="p-5">
-                <div class="magicFade">
-                    <div class="col-sm-8 mx-auto"><img class="p-3" id="titleLogo" src="./assets/images/wizard-words.png">
-                        <h4 id="gameWord"></h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>Wins: <span class="text-success font-weight-bold" id="winCount"></span></p>
-                        <p>Losses: <span class="text-danger font-weight-bold" id="lossCount"></span></p>
+                    <img class="titleFlag" src="./assets/images/title-flag.png">
+                    <p id="currentWord" class="text-center centered my-0 col-sm-12 mx-auto"></p>
 
-                    </div>
-                    <p class="text-center">Current Word</p>
-                    <div class="col-lg-6 mx-auto">
+                </div>
 
-                        <img class="titleFlag" src="./assets/images/title-flag.png">
-                        <p id="currentWord" class="text-center centered my-0 col-sm-12 mx-auto"></p>
-
-                    </div>
-
-                    <div class="col-sm-12">
-                        <p>Guesses Left: <span class="font-weight-bold" id="guessCount"></span></p>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p>Letters already guessed:</p>
-                            </div>
-                            <div class="col-lg-8">
-                                <p><span class="text-primary" id="guessList"></span></p>
-                            </div>
+                <div class="col-sm-12">
+                    <p>Guesses Left: <span class="font-weight-bold" id="guessCount"></span></p>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <p>Letters already guessed:</p>
                         </div>
-                        <p class="text-center" id="previousLetter"></p>
+                        <div class="col-lg-8">
+                            <p id="guessList"></p>
+                        </div>
                     </div>
+                    <p class="text-center fadeOut" id="previousLetter"></p>
                 </div>
             </div>
+            <div class="letter-btns">
+                <button class="letter-btn" data-available="true" data-letter="A">a</button>
+                <button class="letter-btn" data-available="true" data-letter="B">b</button>
+                <button class="letter-btn" data-available="true" data-letter="C">c</button>
+                <button class="letter-btn" data-available="true" data-letter="D">d</button>
+                <button class="letter-btn" data-available="true" data-letter="E">e</button>
+                <button class="letter-btn" data-available="true" data-letter="F">f</button>
+                <button class="letter-btn" data-available="true" data-letter="G">g</button>
+                <button class="letter-btn" data-available="true" data-letter="H">h</button>
+                <button class="letter-btn" data-available="true" data-letter="I">i</button>
+                <button class="letter-btn" data-available="true" data-letter="J">j</button>
+                <button class="letter-btn" data-available="true" data-letter="K">k</button>
+                <button class="letter-btn" data-available="true" data-letter="L">l</button>
+                <button class="letter-btn" data-available="true" data-letter="M">m</button>
+                <button class="letter-btn" data-available="true" data-letter="N">n</button>
+                <button class="letter-btn" data-available="true" data-letter="O">o</button>
+                <button class="letter-btn" data-available="true" data-letter="P">p</button>
+                <button class="letter-btn" data-available="true" data-letter="Q">q</button>
+                <button class="letter-btn" data-available="true" data-letter="R">r</button>
+                <button class="letter-btn" data-available="true" data-letter="S">s</button>
+                <button class="letter-btn" data-available="true" data-letter="T">t</button>
+                <button class="letter-btn" data-available="true" data-letter="U">u</button>
+                <button class="letter-btn" data-available="true" data-letter="V">v</button>
+                <button class="letter-btn" data-available="true" data-letter="W">w</button>
+                <button class="letter-btn" data-available="true" data-letter="X">x</button>
+                <button class="letter-btn" data-available="true" data-letter="Y">y</button>
+                <button class="letter-btn" data-available="true" data-letter="Z">z</button>
+            </div>
         </div>
-
     </div>
 
     <iframe id="backgroundMusic" width="0" height="0" src="./assets/sounds/Harry Potter Soundtrack for Studying, Sleeping, Relaxing, and Meditating.mp3"
         frameborder="0" allowfullscreen loop="true"></iframe>
-    <audio controls id="successSound" src="./assets/sounds/zapsplat_magic_wand_ping_007_12535.mp3"></audio>
+    <!-- <audio controls id="successSound" src="./assets/sounds/zapsplat_magic_wand_ping_007_12535.mp3"></audio> -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
